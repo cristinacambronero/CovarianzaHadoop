@@ -1,0 +1,24 @@
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.MeanDriver <ruta archivo de entrada en el fdfs> <ruta archivo de salida de la media en el hdfs>
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.CovDriver <ruta archivo de entrada en el fdfs> <ruta archivo de salida de la covarianza en el hdfs> <ruta archivo de salida de la media en el hdfs>
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.PreprocesadoDriver <ruta archivo de entrada en el fdfs> <ruta archivo de salida del sequenceFile en el hdfs>  -jarlibs <lugar donde se encuentren los jar del core y math de mahout>
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.CovDriverSeq <ruta archivo de salida del sequenceFile en el hdfs> <ruta de salida de la covarianza en mahout en el hdfs> <ruta archivo de salida de la media en el hdfs> -jarlibs <lugar donde se encuentren los jar del core y math de mahout>
+
+					*************************** EJECUCION HADOOP ***************************
+
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.MeanDriver /user/cloudera/CarteraInversion/CI10.txt /user/cloudera/CarteraInverion/salidaMean
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.CovDriver /user/cloudera/CarteraInversion/CI10.txt /user/cloudera/CarteraInversion/salidaCovarianza CarteraInverion/salidaMean
+
+				******************************** EJECUCION HADOOP+MAHOUT ********************************
+
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.MeanDriver /user/cloudera/CarteraInversion/CI10.txt /user/cloudera/CarteraInverion/salidaMean
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.PreprocesadoDriver /user/cloudera/CarteraInversion/CI10.txt CarteraInverion/salidaSequenceFile     -jarlibs <lugar donde se encuentren los jar del core y math de mahout>
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.CovDriverSeq /user/cloudera/CarteraInversion/salidaSequenceFile /user/cloudera/CarteraInversion/salidaCovarianzaSeq CarteraInverion/salidaMean -jarlibs <lugar donde se encuentren los jar del core y math de mahout>
+
+*********************************************************
+*           EN EL CASO DE UTILIZAR MAHOUT		*
+*********************************************************
+
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.PreprocesadoDriver -jarlibs ../../
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.MeanDriver -jarlibs ../../
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.CovDriverSeq -jarlibs ../../
+

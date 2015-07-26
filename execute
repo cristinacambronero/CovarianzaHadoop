@@ -5,13 +5,17 @@ hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.CovDriverSeq <ruta ar
 
 					*************************** EJECUCION HADOOP ***************************
 
-hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.MeanDriver /user/cloudera/CarteraInversion/CI10.txt /user/cloudera/CarteraInverion/salidaMean
-hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.CovDriver /user/cloudera/CarteraInversion/CI10.txt /user/cloudera/CarteraInversion/salidaCovarianza CarteraInverion/salidaMean
+hadoop fs -put CI1000.txt
+
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.MeanDriver /user/cloudera/CI1000.txt /user/cloudera/CarteraInverion/salidaMean
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.CovDriver /user/cloudera/CI1000.txt /user/cloudera/CarteraInversion/salidaCovarianza CarteraInverion/salidaMean
 
 				******************************** EJECUCION HADOOP+MAHOUT ********************************
 
-hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.MeanDriver /user/cloudera/CarteraInversion/CI10.txt /user/cloudera/CarteraInverion/salidaMean
-hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.PreprocesadoDriver /user/cloudera/CarteraInversion/CI10.txt CarteraInverion/salidaSequenceFile     -jarlibs <lugar donde se encuentren los jar del core y math de mahout>
+hadoop fs -put CI1000.txt
+
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.MeanDriver /user/cloudera/CI1000.txt /user/cloudera/CarteraInverion/salidaMean
+hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.PreprocesadoDriver /user/cloudera/CI1000.txt CarteraInverion/salidaSequenceFile     -jarlibs <lugar donde se encuentren los jar del core y math de mahout>
 hadoop jar target/covariance-1.0-SNAPSHOT.jar org.cristina.CovDriverSeq /user/cloudera/CarteraInversion/salidaSequenceFile /user/cloudera/CarteraInversion/salidaCovarianzaSeq CarteraInverion/salidaMean -jarlibs <lugar donde se encuentren los jar del core y math de mahout>
 
 *********************************************************
